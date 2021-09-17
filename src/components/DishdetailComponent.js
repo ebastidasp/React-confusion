@@ -40,29 +40,12 @@ else
 function RenderComments({comments, postComment, dishId}) {
       
     console.log(comments);
-    var commentsL = {}
-    if (comments != null){
-        commentsL = comments.map((comments) => {
-        return (
-        <ul class="list">
-        <uli class="list-item" id = {comments.id}>
-                <div className="row">
-                    {comments.comment}
-                </div>
-                <div className="row">
-                    <p>--</p>{comments.author}&nbsp;{new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comments.date)))}
-                </div>
-        </uli>
-        </ul>
-
-    );
-    }); }
 
     if (comments != null)
         return(
           <div>
               <h4>Comments</h4>
-              <Stagger in>
+                    <Stagger in>
                         {comments.map((comment) => {
                             return (
                                 <Fade in>
@@ -73,7 +56,7 @@ function RenderComments({comments, postComment, dishId}) {
                                 </Fade>
                             );
                         })}
-                        </Stagger>
+                    </Stagger>
               <CommentForm dishId={dishId} postComment={postComment} />
           </div>  
         );

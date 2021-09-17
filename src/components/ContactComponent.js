@@ -46,9 +46,17 @@ class Contact extends Component {
 
     handleSubmit(values) {
         console.log('Current State is: ' + JSON.stringify(values));
-        alert('Current State is: ' + JSON.stringify(values));
+        console.log('props: ',this.props);
+        console.log(this.props.feedback);
         this.props.resetFeedbackForm();
-        // event.preventDefault();
+        this.props.postFeedback(values.firstname, values.lastname, values.telnum, values.email, values.agree, values.contactType, values.message)
+            .then(_ => this.props.feedback()
+                .then(a => alert('Thanks for your feedback! '+JSON.stringify(a.payload[a.payload.length-1]))));
+        console.log('prueba');
+        //var a = await this.props.feedback();
+        //console.log(a);
+        //alert('Thanks for your feedback! '+JSON.stringify(a.payload[a.payload.length-1]))
+        // event.preventDefault(); 
     }
 
     handleBlur = (field) => (evt) => {
